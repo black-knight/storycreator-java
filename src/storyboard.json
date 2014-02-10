@@ -77,21 +77,24 @@
       "mostRecentOtherGroups": ["princessLivesOnPalace"],
       "outputGlue": {
         "middleGlue": ", ",
-        "lastGlue": " og ",
+        "lastGlue": ", og ",
         "sentenceEnd": "."
       },
       "choices": [
         {
           "object": "mainCharacterPrince",
-          "output": "Hun boede sammen med sin bror, prinsen Pelle"
+          "output": "Hun boede sammen med sin bror, prinsen Pelle",
+          "outputGlued": "sin bror, prinsen Pelle"
         },
         {
           "object": "characterKing",
-          "output": "Hun boede sammen med sin far, kongen Daniel"
+          "output": "Hun boede sammen med sin far, kongen Daniel",
+          "outputGlued": "sin far, kongen Daniel"
         },
         {
           "object": "characterQueen",
-          "output": "Hun boede sammen med sin moder, dronningen Annie"
+          "output": "Hun boede sammen med sin moder, dronningen Annie",
+          "outputGlued": "sin moder, dronningen Annie"
         },
       ]
     }

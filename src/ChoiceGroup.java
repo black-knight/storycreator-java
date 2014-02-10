@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,9 +11,11 @@ public class ChoiceGroup {
     private List<ChoiceGroup> mostRecentOtherGroups;
     private List<ChoiceGroup> mostRecentGroups;
     private List<ChoiceGroup> dependsOnGroups;
+    private OutputGlue outputGlue;
 
     public ChoiceGroup(String name) {
         this.name = name;
+        outputGlue = new OutputGlue(", ", " samt ", ". ");
     }
 
     public void setMostRecentOtherGroups(List<ChoiceGroup> mostRecentOtherGroups) {
@@ -87,5 +88,15 @@ public class ChoiceGroup {
             }
         }
         return true;
+    }
+
+    public void setOutputGlue(OutputGlue outputGlue) {
+        if (outputGlue != null) {
+            this.outputGlue = outputGlue;
+        }
+    }
+
+    public OutputGlue getOutputGlue() {
+        return outputGlue;
     }
 }

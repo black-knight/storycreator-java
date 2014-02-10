@@ -53,4 +53,13 @@ public class Story {
         }
         return availableChoice;
     }
+
+    public String outputFinalStory() {
+        StringBuilder sb = new StringBuilder();
+        for (Choice choice: choiceHistory) {
+            sb.append(choice.getOutputText(choiceHistory));
+        }
+        sb.append(".");
+        return sb.toString();
+    }
 }

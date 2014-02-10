@@ -53,6 +53,7 @@ public class StoryBoard {
         choiceGroup.setDependsOnGroups(choiceGroupNamesFromJsonArray(jsonObject.getJSONArray("dependsOnGroups")));
         choiceGroup.setMostRecentGroups(choiceGroupNamesFromJsonArray(jsonObject.getJSONArray("mostRecentGroups")));
         choiceGroup.setMostRecentOtherGroups(choiceGroupNamesFromJsonArray(jsonObject.getJSONArray("mostRecentOtherGroups")));
+        choiceGroup.setOutputGlue(outputGlueFromJsonObject(jsonObject.getJSONObject("outputGlue")));
         JSONArray choiceGroupList = jsonObject.getJSONArray("choices");
         for (int i = 0; i < choiceGroupList.length(); i++) {
             Choice choice = parseChoice(choiceGroupList.getJSONObject(i));
@@ -67,9 +68,9 @@ public class StoryBoard {
         choice.setSourceObject(storyObjectNamed(jsonObject.getString("object")));
         choice.setTargetObject(storyObjectNamed(jsonObject.getString("targetObject")));
         choice.setOutputText(jsonObject.getString("output"));
+        choice.setOutputTextGlued(jsonObject.getString("outputGlued"));
         choice.setDependsOnObjects(storyObjectNamesFromJsonArray(jsonObject.getJSONArray("dependsOnObjects")));
         choice.setMostRecentGroups(choiceGroupNamesFromJsonArray(jsonObject.getJSONArray("mostRecentGroups")));
-        choice.setOutputGlue(outputGlueFromJsonObject(jsonObject.getJSONObject("outputGlue")));
         return choice;
     }
 

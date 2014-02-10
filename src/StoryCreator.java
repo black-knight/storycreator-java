@@ -6,19 +6,25 @@ public class StoryCreator {
         System.out.println("Initialiserer...");
         StoryBoard.init();
 
-        System.out.println("Klar!");
+        System.out.println("Klar! ('afslut' afslutter)");
         System.out.println();
 
         Story story = new Story();
 
         while (true) {
             story.printChoice();
-
+            System.out.println("=: Udskriv history");
             System.out.print("> ");
+
             String str = System.console().readLine();
 
-            if ("quit".equals(str.toLowerCase())) {
+            if ("afslut".equals(str.toLowerCase())) {
                 break;
+            }
+            if ("=".equals(str)) {
+                System.out.println();
+                System.out.println(story.outputFinalStory());
+                continue;
             }
 
             if (str.length() != 1) {
@@ -34,15 +40,17 @@ public class StoryCreator {
 
             Choice choice = story.choose(ch - 'a');
 
-            String outputText = choice.getOutputText(story.choiceHistory, story.currentObjects);
+            String outputText = choice.getOutputText(story.choiceHistory);
             System.out.println(Util.characters('-', outputText.length() + 4));
             System.out.println("| " + outputText + " |");
             System.out.println(Util.characters('-', outputText.length() + 4));
             System.out.println("");
             System.out.println("");
-
-            Util.outputTextToFile(outputText, "story.txt");
         }
+
+        System.out.println();
+        System.out.println("Skriver historien til story.txt...");
+        Util.outputTextToFile(story.outputFinalStory(), "story.txt");
         System.out.println("Farvel!");
     }
 }
