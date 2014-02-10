@@ -1,0 +1,99 @@
+{
+  "objects": [
+    {"name": "story", "description": ""},
+
+    {"name": "mainCharacterPrinsess", "description": "Prinsesse"},
+    {"name": "mainCharacterPrince", "description": "Prins"},
+    {"name": "mainCharacterBoy", "description": "Dreng"},
+    {"name": "mainCharacterGirl", "description": "Pige"},
+
+    {"name": "characterKing", "description": "Konge"},
+    {"name": "characterQueen", "description": "Dronning"},
+    {"name": "characterStepMother", "description": "Stedmoder"},
+
+    {"name": "locationPalace", "description": "Slot"}
+  ],
+
+  "choiceGroups": [
+    {
+      "name": "bootstrap",
+      "choices": []
+    },
+    {
+      "name": "initialPlacement",
+      "mostRecentGroups": ["bootstrap"],
+      "choices": [
+        {
+          "object": "mainCharacterPrinsess",
+          "output": "Der var engang en prinsesse, der hed Elisa"
+        },
+        {
+          "object": "mainCharacterPrince",
+          "output": "Der var engang en prins, der hed Pelle"
+        },
+        {
+          "object": "mainCharacterBoy",
+          "output": "Der var engang en dreng, der hed Pelle"
+        },
+        {
+          "object": "mainCharacterGirl",
+          "output": "Der var engang en pige, der hed Elisa"
+        },
+        {
+          "object": "locationPalace",
+          "output": "Engang for længe siden fandtes der et slot"
+        }
+      ]
+    },
+
+    {
+      "name": "princessLivesOnPalace",
+      "dependsOnGroups": ["initialPlacement"],
+      "choices": [
+        {
+          "object": "mainCharacterPrinsess",
+          "output": "På slottet levede en prinsesse",
+          "dependsOnObjects": ["locationPalace"],
+          "mostRecentGroups": ["initialPlacement"]
+        },
+        {
+          "object": "mainCharacterPrinsess",
+          "targetObject": "locationPalace",
+          "output": "På slottet levede en prinsesse",
+          "dependsOnObjects": ["locationPalace"],
+          "mostRecentGroups": ["initialPlacement"]
+        },
+        {
+          "object": "locationPalace",
+          "output": "Prinsessen levede på et stort slot",
+          "dependsOnObjects": ["mainCharacterPrinsess"],
+          "mostRecentGroups": ["initialPlacement"]
+        },
+      ]
+    },
+
+    {
+      "name": "prinsessLivesOnPalaceWith",
+      "mostRecentOtherGroups": ["princessLivesOnPalace"],
+      "outputGlue": {
+        "middleGlue": ", ",
+        "lastGlue": " og ",
+        "sentenceEnd": "."
+      },
+      "choices": [
+        {
+          "object": "mainCharacterPrince",
+          "output": "Hun boede sammen med sin bror, prinsen Pelle"
+        },
+        {
+          "object": "characterKing",
+          "output": "Hun boede sammen med sin far, kongen Daniel"
+        },
+        {
+          "object": "characterQueen",
+          "output": "Hun boede sammen med sin moder, dronningen Annie"
+        },
+      ]
+    }
+  ]
+}
